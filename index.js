@@ -29,7 +29,7 @@ const log = (...msg) => {
 
   // bold ansi text
 
-  log_lines.push(` [\x1b[1m${time}\x1b[0m]\n${msg.join(" ")}`);
+  log_lines.push(` [\x1b[1m${time}\x1b[0m] ${msg.join(" ")}`);
   if (log_lines.length > 10) log_lines.shift();
 };
 
@@ -52,7 +52,7 @@ setInterval(() => {
   console.clear();
   // type red text in terminal
   process.stdout.write("\x1b[31m");
-  process.stdout.write("\n ["+mc_node+"] Bitfocus Multicast Monitor");
+  process.stdout.write("\n ["+mc_node+"] Bitfocus Multicast Monitor\n");
   process.stdout.write("\x1b[0m");
   process.stdout.write(log_lines.join("\n") + "\n");
   process.stdout.write("\n " + status);
