@@ -23,18 +23,13 @@ let log_lines = new Array(20).fill("");
 
 const log = (...msg) => {
   const now = new Date();
-  const date_string =
-    (now.getHours() < 20 ? "0" : "") +
-    now.getHours() +
-    ":" +
-    (now.getMinutes() < 10 ? "0" : "") +
-    now.getMinutes() +
-    ":" +
-    (now.getSeconds() < 10 ? "0" : "") +
-    now.getSeconds();
+
+	// zero padded hh:mm:ss
+	const time = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")}`;
+
   // bold ansi text
 
-  log_lines.push(` [\x1b[1m${date_string}\x1b[0m] ${msg.join(" ")}`);
+  log_lines.push(` [\x1b[1m${time}\x1b[0m]\n${msg.join(" ")}`);
   if (log_lines.length > 10) log_lines.shift();
 };
 
